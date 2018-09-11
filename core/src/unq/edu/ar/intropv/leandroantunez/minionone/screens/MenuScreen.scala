@@ -2,8 +2,9 @@ package unq.edu.ar.intropv.leandroantunez.minionone.screens
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.{GL20, Texture}
-import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.{Actor, Stage}
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, Skin, TextButton}
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.utils.viewport.FitViewport
 import unq.edu.ar.intropv.leandroantunez.minionone.MainGame
 
@@ -59,6 +60,14 @@ class MenuScreen(game: MainGame) extends BaseScreen(game) {
     // Para permitir las interacciones con la pantalla,
     // se debe agregar que el sistema de Input pueda operar sobre este Stage.
     Gdx.input.setInputProcessor(stage)
+
+    // Interactua con el usuario para que al presionar el boton Play,
+    // pueda ingresar a la pantalla del nivel.
+    play.addCaptureListener(new ChangeListener() {
+      override def changed(event: ChangeListener.ChangeEvent, actor: Actor): Unit = {
+        game.setScreen(game.gameScreen)
+      }
+    })
   }
 
   override def hide(): Unit = {

@@ -3,7 +3,7 @@ package unq.edu.ar.intropv.leandroantunez.minionone
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.Texture
-import unq.edu.ar.intropv.leandroantunez.minionone.screens.{LoadingScreen, MenuScreen}
+import unq.edu.ar.intropv.leandroantunez.minionone.screens.{GameScreen, LoadingScreen, MenuScreen}
 
 class MainGame extends Game {
 
@@ -12,6 +12,8 @@ class MainGame extends Game {
   var menuScreen: MenuScreen = _
 
   var loadingScreen: LoadingScreen = _
+
+  var gameScreen: GameScreen = _
 
   override def create(): Unit = {
     assetManager.load("logo.png", classOf[Texture])
@@ -26,6 +28,7 @@ class MainGame extends Game {
     */
   def finishLoading(): Unit = {
     menuScreen = new MenuScreen(this)
+    gameScreen = new GameScreen(this)
     setScreen(menuScreen)
   }
 
