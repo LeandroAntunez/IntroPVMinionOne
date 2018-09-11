@@ -17,6 +17,7 @@ class MainGame extends Game {
 
   override def create(): Unit = {
     assetManager.load("logo.png", classOf[Texture])
+    assetManager.load("player.png", classOf[Texture])
     loadingScreen = new LoadingScreen(this)
     setScreen(loadingScreen)
   }
