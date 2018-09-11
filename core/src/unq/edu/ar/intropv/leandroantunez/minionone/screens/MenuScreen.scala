@@ -25,7 +25,7 @@ class MenuScreen(game: MainGame) extends BaseScreen(game) {
   // Crea una imagen. Las imagenes son actores que solo proporcionan cierta textura.
   // Util cuando se quiere proporcionar una textura usando Scene2D para hacer Pantallas,
   // sin necesidad de reescribir codigo.
-  private val logo: Image = new Image(game.manager.get("logo.png", classOf[Texture]))
+  private val logo: Image = new Image(game.assetManager.get("logo.png", classOf[Texture]))
 
   /** El boton de Play para ingresar a la Pantalla del nivel. */
   // Crea los nuevos botones de texto utilizando el archivo de Skin como imagen de fondo.

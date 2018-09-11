@@ -3,7 +3,7 @@ package unq.edu.ar.intropv.leandroantunez.minionone
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.Texture
-import unq.edu.ar.intropv.leandroantunez.minionone.screens.MenuScreen
+import unq.edu.ar.intropv.leandroantunez.minionone.screens.{LoadingScreen, MenuScreen}
 
 class MainGame extends Game {
 
@@ -11,13 +11,20 @@ class MainGame extends Game {
 
   var menuScreen: MenuScreen = _
 
-  // Getter del administrador de recursos (musica, imagenes, etc).
-  def manager: AssetManager = this.assetManager
+  var loadingScreen: LoadingScreen = _
 
   override def create(): Unit = {
     assetManager.load("logo.png", classOf[Texture])
-    assetManager.finishLoading()
+    loadingScreen = new LoadingScreen(this)
+    setScreen(loadingScreen)
+  }
 
+  /**
+    * This method is invoked by LoadingScreen when all the assets are loaded. Use this method
+    * as a second-step loader. You can load the rest of the screens here and jump to the main
+    * screen now that everything is loaded.
+    */
+  def finishLoading(): Unit = {
     menuScreen = new MenuScreen(this)
     setScreen(menuScreen)
   }
