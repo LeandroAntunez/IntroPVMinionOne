@@ -23,7 +23,6 @@ class LoadingScreen(game: MainGame) extends BaseScreen(game) {
   // Carga el archivo de la Skin. Este contiene informacion sobre las Skins.
   private val skin: Skin = new Skin(Gdx.files.internal("skin/uiskin.json"))
 
-  // Create some loading text using this skin file and position it on screen.
   private val loading: Label = new Label("Loading...", skin)
 
   override def show(): Unit = {

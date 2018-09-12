@@ -2,7 +2,9 @@ package unq.edu.ar.intropv.leandroantunez.minionone
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.assets.AssetManager
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.maps.tiled.{TiledMap, TmxMapLoader}
 import unq.edu.ar.intropv.leandroantunez.minionone.screens.{GameScreen, LoadingScreen, MenuScreen}
 
 class MainGame extends Game {
@@ -18,15 +20,12 @@ class MainGame extends Game {
   override def create(): Unit = {
     assetManager.load("logo.png", classOf[Texture])
     assetManager.load("player.png", classOf[Texture])
+    assetManager.setLoader(classOf[TiledMap], new TmxMapLoader(new InternalFileHandleResolver))
+    assetManager.load("map/minion-one-tiled.tmx", classOf[TiledMap])
     loadingScreen = new LoadingScreen(this)
     setScreen(loadingScreen)
   }
 
-  /**
-    * This method is invoked by LoadingScreen when all the assets are loaded. Use this method
-    * as a second-step loader. You can load the rest of the screens here and jump to the main
-    * screen now that everything is loaded.
-    */
   def finishLoading(): Unit = {
     menuScreen = new MenuScreen(this)
     gameScreen = new GameScreen(this)
